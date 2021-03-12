@@ -23,6 +23,11 @@ class BooksTableSeeder extends Seeder
         $book->rating = 10;
         $book->description = "Letzter Teil der Trilogie";
         $book->published = new DateTime();
+
+        $user = \App\Models\User::all()->first();
+        $book->user()->associate($user);
+        //raus nehmen aus Beziehung -> dissociate
+
         $book->save();
 
         // add images to book
@@ -34,6 +39,10 @@ class BooksTableSeeder extends Seeder
         $image2->title = "Cover 2";
         $image2->url = "https://images-eu.ssl-images-amazon.com/images/I/516KV5tjulL._AC_US327_FMwebp_QL65_.jpg";
         $book->images()->saveMany([$image1,$image2]);
+
+        //test authors
+        $authors = \App\Models\Author::all()->pluck("id");
+        $book->authors()->sync($authors);
         $book->save();
 
     }
