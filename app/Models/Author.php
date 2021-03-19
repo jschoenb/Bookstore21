@@ -10,6 +10,8 @@ class Author extends Model
 {
     use HasFactory;
 
+    protected  $fillable = ['firstName','lastName'];
+
     public function books() : BelongsToMany {
         return $this->belongsToMany(Book::class)->withTimestamps();
     }

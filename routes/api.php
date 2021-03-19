@@ -22,3 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('books',[BookController::class,'index']);
 Route::get('book/{isbn}',[BookController::class,'findByISBN']);
 Route::get('books/checkisbn/{isbn}',[BookController::class,'checkISBN']);
+Route::get('books/search/{searchTerm}',[BookController::class,'findBySearchTerm']);
+Route::post('book',[BookController::class,'save']);
+Route::put('book/{isbn}',[BookController::class,'update']);
+Route::delete('book/{isbn}',[BookController::class,'delete']);
